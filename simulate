@@ -1,0 +1,9 @@
+#!/bin/bash
+echo "gcc main.c -o main -lm"
+gcc main.c -o main -lm
+echo "gcc gen_data.c -o gen_data"
+gcc gen_data.c -o gen_data
+echo "./gen_file datafile"
+./gen_data datafile
+echo "./main datafile"
+./main datafile
