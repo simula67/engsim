@@ -97,53 +97,59 @@ void InitDat(char *file,struct data *pdat){
 }
     // ===================================================================
     // Function which simulates the engine.
-    void engine(struct data *pdat){
-    FILE *fp1, *fp2;
-    char b, u;
-    char COMBUSTION, COMPRESSION, EXPANSION;
-    int cycl, logical;
-    double xb, dxb;
-    double angle, sangle;
-    double Af, Ut, lt, Sl, hc;
-    double Vf, Vu, dVu, Vb, dVb;
-    double densi, denstot, densu ,densb;
-    double me, dme, mu, dmu, mb, dmb, MBtot;
-    double Temp, Pres, Temp1, Pres1, Temp2, Pres2, Temp3, Pres3;
-    double Tempu, Presu, Tempb, Presb,\
+void engine(struct data *pdat){
+  FILE *fp1, *fp2;
+  char b, u;
+  char COMBUSTION, COMPRESSION, EXPANSION;
+  int cycl, logical;
+  double xb, dxb;
+  double angle, sangle;
+  double Af, Ut, lt, Sl, hc;
+  double Vf, Vu, dVu, Vb, dVb;
+  double densi, denstot, densu ,densb;
+  double me, dme, mu, dmu, mb, dmb, MBtot;
+  double Temp, Pres, Temp1, Pres1, Temp2, Pres2, Temp3, Pres3;
+  double Tempu, Presu, Tempb, Presb,					\
     Tempu1, Presu1, Tempb1, Presb1, Tempu2, Tempb2, Presb2, Presu2;
-    double dTempu, dPresu, dTempb, dPresb, dTempu1, dPresu1, dTempb1, dPresb1;
-    double mu_p, mb_p, Vu_p, Vb_p;
-    cycl=0;
-    xb=dxb=0.;
-    sangle=pi/180.;
-    Af=Ut=lt=Sl=hc=0.;
-    Vf=Vu=dVu=Vb=dVb=0.;
-    densi=denstot=densu=densb=0.;
-    MBtot=me=dme=mu=dmu=mb=dmb=0.;
-    Temp=Pres=Temp1=Pres1=Temp2=Pres2=Temp3=Pres3=0.;
-    Tempu=Presu=Tempb=Presb=Tempu1=Presu1=Tempb1=Presb1=Tempu2=Presu2=Tempb2=Presb2=0.;
-    dTempu=dPresu=dTempb=dPresb=dTempu1=dPresu1=dTempb1=dPresb1=0.;
-    mu_p = mb_p = Vu_p = Vb_p = 0.0;
-    if (((fp1=fopen("results1.dat","w")) == NULL)){
-      printf("Programm couldn’t open the file.\n");
-      exit(1);
-    }else if (((fp2=fopen("results2.dat","w")) == NULL)){
-      printf("Programm couldn’t open the file.\n");
-      exit(1);
-    }else{
-      for(cycl=1;cycl<=(*pdat).ncycl;cycl++){
-	//
-	//Beginning of Intake Process
+  double dTempu, dPresu, dTempb, dPresb, dTempu1, dPresu1, dTempb1, dPresb1;
+  double mu_p, mb_p, Vu_p, Vb_p;
+  cycl=0;
+  xb=dxb=0.;
+  sangle=pi/180.;
+  Af=Ut=lt=Sl=hc=0.;
+  Vf=Vu=dVu=Vb=dVb=0.;
+  densi=denstot=densu=densb=0.;
+  MBtot=me=dme=mu=dmu=mb=dmb=0.;
+  Temp=Pres=Temp1=Pres1=Temp2=Pres2=Temp3=Pres3=0.;
+  Tempu=Presu=Tempb=Presb=Tempu1=Presu1=Tempb1=Presb1=Tempu2=Presu2=Tempb2=Presb2=0.;
+  dTempu=dPresu=dTempb=dPresb=dTempu1=dPresu1=dTempb1=dPresb1=0.;
+  mu_p = mb_p = Vu_p = Vb_p = 0.0;
+  if (((fp1=fopen("results1.dat","w")) == NULL)){
+    printf("Programm couldn’t open the file.\n");
+    exit(1);
+  }
+  if (((fp2=fopen("results2.dat","w")) == NULL)){
+    printf("Programm couldn’t open the file.\n");
+    exit(1);
+  }
+  {
+    printf("Beginning.. Opened files\n");
+    for(cycl=1;cycl<=(*pdat).ncycl;cycl++){
+      //
+      //Beginning of Intake Process
+	printf("In loop\n");
 	densi=density((*pdat).atmotemp,(*pdat).atmopres,MBr);
 	if(cycl == 1){
 	  Pres=(*pdat).atmopres-1.e-5*.5*densi*pow((*pdat).Ui,2.)*(pow((*pdat).Ap,2.)-pow((*pdat).Av,2.))/pow((*pdat).Ap,2.);
 	  Temp=(*pdat).atmotemp;
 	  printf(".");
+	  printf("About to print in if\n");
 	  fprintf(fp1,"%d \t%lf %lf %lf \n",cycl,270.,Pres,Temp);
 	}else{
 	  Pres=(*pdat).atmopres-1.e-5*.5*densi*pow((*pdat).Ui,2.)*(pow((*pdat).Ap,2.)-pow((*pdat).Av,2.))/pow((*pdat).Ap,2.);
 	  Temp=(1./3.)*((*pdat).Tw + 2*Temp1);
 	  printf(".");
+	  printf("About to print in else\n");
 	  fprintf(fp1,"%d \t%lf %lf %lf \n",cycl,270.,Pres,Temp);
 	}
 	Vu=(*pdat).Vc+.25*pi*(*pdat).B*(*pdat).B*(*pdat).L;

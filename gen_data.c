@@ -30,7 +30,7 @@ int main(int argc,char *argv[])
   double atmotemp = 15;
   double rpm = 3000;
   double compratio = 10;
-  double ncycl = 4;
+  int ncycl = 4;
   double gamma = 1.4;
   double tw = 200;
   double B = 0.08;

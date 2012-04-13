@@ -4,7 +4,7 @@
 struct data {
   double rpm;
   double compratio;
-  double ncycl;
+  int ncycl;
   double gamma;
   double B;
   double L;
