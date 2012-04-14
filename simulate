@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "rm -f main gen_data datafile results1.dat results2.dat"
+rm -f main gen_data datafile results1.dat results2.dat
 echo "gcc main.c -o main -lm"
 gcc main.c -o main -lm
 echo "gcc gen_data.c -o gen_data"
