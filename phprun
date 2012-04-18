@@ -1,0 +1,8 @@
+#!/bin/bash
+#Remove files
+rm -f main gen_data datafile results1.dat results2.dat
+#Compile
+gcc main.c -o main -lm
+#Run
+./main datafile_php
+rm -f datafile_php

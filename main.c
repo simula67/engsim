@@ -133,7 +133,8 @@ void engine(struct data *pdat){
     exit(1);
   }
   {
-    printf("Beginning.. Opened files\n");
+    fprintf(fp1,"Results1.dat:\n");
+    fprintf(fp2,"Results2.dat:\n");
     for(cycl=1;cycl<=(*pdat).ncycl;cycl++){
       //
       //Beginning of Intake Process
@@ -143,13 +144,11 @@ void engine(struct data *pdat){
 	  Pres=(*pdat).atmopres-1.e-5*.5*densi*pow((*pdat).Ui,2.)*(pow((*pdat).Ap,2.)-pow((*pdat).Av,2.))/pow((*pdat).Ap,2.);
 	  Temp=(*pdat).atmotemp;
 	  printf(".");
-	  printf("About to print in if\n");
 	  fprintf(fp1,"%d \t%lf %lf %lf \n",cycl,270.,Pres,Temp);
 	}else{
 	  Pres=(*pdat).atmopres-1.e-5*.5*densi*pow((*pdat).Ui,2.)*(pow((*pdat).Ap,2.)-pow((*pdat).Av,2.))/pow((*pdat).Ap,2.);
 	  Temp=(1./3.)*((*pdat).Tw + 2*Temp1);
 	  printf(".");
-	  printf("About to print in else\n");
 	  fprintf(fp1,"%d \t%lf %lf %lf \n",cycl,270.,Pres,Temp);
 	}
 	Vu=(*pdat).Vc+.25*pi*(*pdat).B*(*pdat).B*(*pdat).L;

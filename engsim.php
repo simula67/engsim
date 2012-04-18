@@ -4,9 +4,9 @@
 <html>
 <body>
 <center> <h1> Engine simulator<h1> </center>
-<h2> Please enter values :</h2>
+<h2> Please enter parameter values :</h2>
 <form action="file.php" method="post">
-  Atmospheric pressure :<input type="text" name="atmospres" /><br />
+  Atmospheric pressure :<input type="text" name="atmopres" /><br />
   Atmospheric temperature :<input type="text" name="atmotemp" /><br />
   Engine Rotation :<input type="text" name="rpm" /><br />
   Compression Ratio :<input type="text" name="compratio" /><br />
